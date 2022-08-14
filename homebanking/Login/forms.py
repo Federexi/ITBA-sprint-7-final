@@ -7,16 +7,13 @@ from django.forms import ModelForm
 
 
 
-
-
-class CustomUserForm(UserCreationForm,ModelForm):
+class UserRegistrationForm(UserCreationForm,ModelForm):
     password1=forms.CharField(label='Contraseña', widget=forms.PasswordInput)
     password2=forms.CharField(label='Confirmar contraseña', widget=forms.PasswordInput)
     dni = forms.CharField(label="DNI", max_length=8)
 
-
     class Meta:
         model=User
-        fields=['first_name', 'last_name','dni', 'email', 'username', 'password1','password2']
+        fields = ['username', 'email', 'first_name', 'dni']
         #help_texts= {k:"" for k in fields}
 

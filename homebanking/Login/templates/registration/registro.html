@@ -39,8 +39,16 @@
               <form class="form" action="" method="POST">
                     {% csrf_token %}
                  <table>
-
-                    {{form.as_table}}
+                  {%for field in form%}
+                    <div class="form-group">    
+                      <label for="{{field.label}}">{{field.label}}</label>
+                       {{field}}
+                    </div>
+                  {%for error in field.errors%}
+                    <p>{{error}}</p>
+                  {%endfor%}
+                  {%endfor%}
+                    
 
                  </table>
                   <input type="submit" value="Registrar"><br>

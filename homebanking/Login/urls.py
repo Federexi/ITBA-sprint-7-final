@@ -6,6 +6,6 @@ from .views import signup
 
 urlpatterns = [
     path('login/', views.index1, name = 'index1'),
-    path('signup/', views.signup, name = 'signup'),
+    path('signup/', views.signup.as_view(), name = 'signup'),
 
 ]

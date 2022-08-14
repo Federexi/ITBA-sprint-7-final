@@ -25,7 +25,7 @@ class Cliente(models.Model):
     dob = models.TextField()
     branch_id = models.IntegerField()
     customer_type = models.ForeignKey(TipoCliente, models.DO_NOTHING)
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
     class Meta:
         db_table = 'cliente'
