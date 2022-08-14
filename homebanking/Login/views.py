@@ -17,7 +17,7 @@ def index1 (request):
     return render (request, 'Login/templates/registration/login.html')
 
 
-#view de registro anterior
+#view de registro  anterior
 """def signup(request):
     data = {
         'form':CustomUserForm()
