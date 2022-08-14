@@ -10,6 +10,7 @@ from Clientes.models import Cliente
 from .forms import UserRegistrationForm
 from django.views import generic
 from django.urls import reverse_lazy
+
 # Create your views here.
 
 
@@ -44,13 +45,15 @@ class signup(generic.CreateView):
    
 
     def form_valid(self, form):
-        
-        cliente = Cliente.objects.get(customer_dni=form.cleaned_data.get('dni'))
+        try:
+            cliente = Cliente.objects.get(customer_dni=form.cleaned_data.get('dni'))
+        except Cliente.DoesNotExist:
+            cliente = None
         if not cliente:
             form.add_error('dni', 'El cliente no existe')
             return self.form_invalid(form)
         elif cliente.user_id:
-            form.add_error(field=None, error='El cliente ya tiene un usuario para operar en Home Banking')
+            form.add_error('dni', error='El cliente ya tiene un usuario para operar en Home Banking')
             return self.form_invalid(form)
             
         super(signup, self).form_valid(form) 

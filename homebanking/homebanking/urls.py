@@ -26,5 +26,5 @@ urlpatterns = [
     path('homebanking/', include('Tarjetas.urls')),
     path('logout/', logout_then_login, name='logout'),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('registration/', include('registration.urls'))
+    # path('registration/', include('registration.urls'))
 ]
