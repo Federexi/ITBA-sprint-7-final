@@ -49,7 +49,7 @@
                   </button>
                   <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                     <div class="offcanvas-header">
-                      <img src="{% static 'images/logo' %}" alt="Logo itbank" class="d-inline-block align-text-top logo">
+                      <img src="../archivos/logo itbank.png" alt="Logo itbank" class="d-inline-block align-text-top logo">
                       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
@@ -57,8 +57,8 @@
                       <div class="col-2 cent1"><a class="nav-link ng" href="{% url 'hub' %}"> Inicio </a></div>
                       <div class="col-2 cent1"><a class="nav-link ng" href="{% url 'prestamos' %}"> Préstamos </a></div>
                       <div class="col-2 cent1"><a class="nav-link ng" href="{% url 'transf' %}"> Transferencias </a></div>
-                      <div class="col-2 cent1"><a class="nav-link ng" href="{% url 'inv' %}"> Inversiones </a></div>
-                      <div class="col-2 cent1"><a class="nav-link dropdown-toggle ng" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Cuenta </a>
+                      <div class="col-2 cent1"><a class="nav-link active1 ng" href="{% url 'inv' %}"> Inversiones </a></div>
+                      <div class="col-2 cent1"><a class="nav-link dropdown-toggle ng" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Información </a>
                         <ul class="dropdown-menu fondo drop" aria-labelledby="navbarScrollingDropdown">
                           <li><a class="dropdown-item drop" href="{% url 'act' %}">Actividad</a></li>
                           <li><a class="dropdown-item drop" href="{% url 'tarjetas' %}">Tarjetas</a></li>
@@ -72,6 +72,7 @@
               </div>
             </nav>
           </div>
+        
 
         <div class="container ">
             <br>

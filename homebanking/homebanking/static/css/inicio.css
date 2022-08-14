@@ -184,105 +184,23 @@ body{
     margin-bottom: 1%;
 }
 
-.container-hall {
-    position: relative;
+.alineofoto{
+    margin: 2% auto;
 }
 
-.section-hub-card {
-    position: absolute;
-    display: grid;
-    background-color: #FFFFFF;
-    margin-top: -90px;
-    margin-left: 200px;
-    padding: 10px;
-    border-radius: 20px;
-    font-family: 'lato';
-    grid-template-columns: 136px 226px ;
-    grid-template-rows: 50px 50px 50px;
-    column-gap: 10px;
+.linea{
+    padding: 0.2%;
+    background-color: #006f9f;
 }
 
-.tarjeta {
-    grid-column: 1/2;
-    grid-row: 1/4;
-    width: 130px;
-    height: 70px;
-    justify-content: center;
-    align-self: center;
+.linea2{
+    padding: 0.2%;
+    background-color: #24beff;
 }
 
-.section-hub-card h3 {
-    font-weight: bold;
-}
-
-.section-hub-card p {
-    font-size: 14px;
-    align-self: center;
-}
-
-.section-hub-card a {
-    background-color: #1A2542;
-    border-radius: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 10px 64px 10px 64px;
-    text-decoration: none;
-    color: #aeaeae;
-    box-shadow: 1px 1px 1px  black;
-}
-
-.section-hub-card a:hover {
-    color: #FFFFFF;
-    background-color: #212d4e;
-}
-
-.section-hub-card2 {
-    position: absolute;
-    display: grid;
-    background-color: #FFFFFF;
-    margin-top: -90px;
-    margin-left: 730px;
-    padding: 10px;
-    border-radius: 20px;
-    font-family: 'lato';
-    grid-template-columns: 136px 226px ;
-    grid-template-rows: 50px 50px 50px;
-    column-gap: 10px;
-}
-
-.oficina {
-    grid-column: 1/2;
-    grid-row: 1/4;
-    width: 120px;
-    height: 100px;
-    justify-content: center;
-    align-self: center;
-}
-
-.section-hub-card2 h3 {
-    font-size: 27px;
-    font-weight: bold;
-}
-
-.section-hub-card2 p {
-    font-size: 13px;
-    align-self: center;
-}
-
-.section-hub-card2 a {
-    background-color: #1A2542;
-    border-radius: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 10px 64px 10px 64px;
-    text-decoration: none;
-    color: #aeaeae;
-    box-shadow: 1px 1px 1px  black;
-}
-
-.section-hub-card2 a:hover {
-    color: #FFFFFF;
-    background-color: #212d4e;
+.linea3{
+    padding: 0.2%;
+    background-color: #78d6ff;
 }
 
 @media only screen and (min-width: 100px) and (max-width: 1450px){

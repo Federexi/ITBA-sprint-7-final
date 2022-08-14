@@ -1,129 +1,194 @@
-{% extends "Prestamos/template/Prestamos/base.html" %}
+{% extends "Cuentas/template/Cuentas/base.html" %}
 {% load static %}
 
 
 <html>
     <head>
-        {% block title %} ITBANK-prestamos {% endblock %}
+        {% block title %} ITBANK-inicio {% endblock %}
         {% block extrahead %} 
         <link type="text/css" href="{% static 'css/prestamos.css' %}" rel="stylesheet">
-        {% endblock %}
+        {% endblock %}        
     </head>
-
     <body>
+        
         {% block content %}
+            <nav class="navbar-dark navbar-expand-md">
+              <div class="container-fluid">
+                <div class="row head2 nav2">
+                  <button class="navbar-toggler burger" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header">
+                      <img src="../archivos/logo itbank.png" alt="Logo itbank" class="d-inline-block align-text-top logo">
+                      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                      <div class="col-1"></div>
+                      <div class="col-2 cent1"><a class="nav-link ng" href="{% url 'hub' %}"> Inicio </a></div>
+                      <div class="col-2 cent1"><a class="nav-link active1 ng" href="{% url 'prestamos' %}"> Préstamos </a></div>
+                      <div class="col-2 cent1"><a class="nav-link ng" href="{% url 'transf' %}"> Transferencias </a></div>
+                      <div class="col-2 cent1"><a class="nav-link ng" href="{% url 'inv' %}"> Inversiones </a></div>
+                      <div class="col-2 cent1"><a class="nav-link dropdown-toggle ng" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Información </a>
+                        <ul class="dropdown-menu fondo drop" aria-labelledby="navbarScrollingDropdown">
+                          <li><a class="dropdown-item drop" href="{% url 'act' %}">Actividad</a></li>
+                          <li><a class="dropdown-item drop" href="{% url 'tarjetas' %}">Tarjetas</a></li>
+                          <li><a class="dropdown-item drop" href="{% url 'conf' %}">Configuración</a></li>
+                          <li><a class="dropdown-item drop" href="{% url 'seg' %}">Seguridad</a></li>
+                        </ul>
+                      </div>
+                    <div class="col-1 cent1"></div>
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </div>
+      
+      
+      
+          <div class="container pad">
+              <div class="row">
+                  <div class="col-md-4">
+                      <h3>Solicitá un préstamo</h3>
+                      <p>Ingresá los datos y presioná calcular para obtener los resultados.</p>
+                      <form action="/solicitudPrestamo" method="GET">
+                          <div class="form-group">
+                              <label for="capitalLabel">Capital</label>
+                              <div class="input-group">
+                                  <div class="input-group-prepend">
+                                      <div class="input-group-text">$</div>
+                                  </div>
+                                  <input type="number" class="form-control" id="capital" name="capital" aria-describedby="capitalHelp" 
+                                  max="100000" min="5000" placeholder="5000" required>
+                              </div>
+                              <small id="capitalHelp" class="form-text text-muted">Máximo $100000</small>
+                          </div>
+          
+                          <div class="form-group">
+                              <label for="plazoLabel">Duración del préstamo (en meses)</label>
+                              <input type="number" class="form-control" id="plazo" name="plazo" 
+                              aria-describedby="plazoHelp" max="72" min="1" placeholder="12" required>
+                              <small id="plazoHelp" class="form-text text-muted">Máximo 72 meses</small>
+                          </div>
+          
+                          <div class="form-group">
+                              <label for="sistemaLabel">Sistema de amortización</label>
+                              <select class="form-control" id="sistema" name="sistema" required>
+                                  <option value="1">Francés</option>
+                                  <option value="2">Alemán</option>
+                              </select>
+                              </div>
+          
+                          <button onclick="calcularAmort()" id="Calcular" type="button" class="btn btn-primary">Calcular</button>
+                          <button type="submit" id="solicitudPrestamo" class="btn btn-success">Solicitar</button>
+                          <button onclick="printJS({
+                               printable: 'tablaAmortizacion',
+                               type:'html',
+                               css: 'https:\/\/stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css',
+                               })"
+                              id="Imprimir" type="button" class="btn btn-alert">Imprimir</button>
+                      </form>
+                  </div><!-- Columna izquierda -->
+          
+                  <div class="col-md-8">
+                      <div class="right-area">
+                          <h3 class="alert alert-primary">Importe de la primera cuota</h3>
+                          <form>
+                              <div class="row">
+                                  <label for="ResultadoCapital" class="col-sm-5 col-form-label">Amortización + Intereses</label>
+                                  <div class="col-sm-3">
+                                      <label type="text" class="col-form-label importante" id="ResultadoCapital"></label>
+                                  </div>
+                              </div>
+                              <div class="dropdown-divider"></div>
+                              
+      
+                              <div class="row">
+                                  <label for="Fecha" class="col-sm-5 col-form-label">Fecha de pago</label>
+                                  <div class="col-sm-3">
+                                      <label type="text" class="col-form-label" id="Fecha"></label>
+                                  </div>
+                              </div>
+                              <div class="dropdown-divider"></div>
+                              <div class="row">
+                                  <label for="Ingresos" class="col-sm-5 col-form-label">Ingresos Necesarios</label>
+                                  <div class="col-sm-3">
+                                      <label type="text" class="col-form-label importante" id="Ingresos"></label>
+                                  </div>
+                              </div>
+                          </form>
+          
+                          <h3 class="alert alert-primary">Tasas</h3>
+                          <form>
+                              <div class="row">
+                                      <abbr class="col-sm-5 col-form-label" for="tna" title="Tasa Nominal Anual">Tasa Nómina Anual</abbr>
+                                  <div class="col-sm-3">
+                                      <label type="text" class="col-form-label" id="TNA"></label>
+                                  </div>
+                              </div>
+                              <div class="dropdown-divider"></div>
+                              <div class="row">
+                                      <abbr class="col-sm-5 col-form-label" for="tem" title="Tasa Efectiva Mensual">Tasa Efectiva Mensual</abbr>
+                                  <div class="col-sm-3">
+                                      <label type="text" class="col-form-label" id="TEM"></label>
+                                  </div>
+                              </div>
+                          </form>
+                      </div><!-- right-area -->
+                  </div><!-- Columna derecha -->
+              </div><!-- row -->
+              <div class="row" style="padding: 40px">
+                  <table id="tablaAmortizacion" class="table table-hover table-striped">
+                      <caption id="descripcion">Tabla de amortización</caption>
+                      <thead>
+                          <tr class="table-primary">
+                              <th scope="col">#</th>
+                              <th scope="col">Interés</th>
+                              <th scope="col">Amortización</th>
+                              <th scope="col">Cuota</th>
+                              <th scope="col">Saldo</th>
+                          </tr>
+                      </thead>
+                      <tbody id="cuerpoTabla">
+                      </tbody>
+                  </table>
+              </div><!-- Tabla -->
+          </div><!-- container -->
+      
+      
+          <div class="container-fluid fixed-bottom letrachica">
+              <div class="row nav3 footer ft">
+                <div class="col-2 arreglofooter"></div>
+                <div class="col-2 arreglofooter">
+                  <div class="row">
+                    <div class="col-4 cent arreglofooter">
+                      <a class="nav-link margen2 ic3" href="https://twitter.com/home" target="_blank"><img src="../archivos/twitter.svg" alt="twitter" class="ic"></a>
+                    </div>
+                    <div class="col-4 cent arreglofooter">
+                      <a class="nav-link margen2 ic3" href="https://www.facebook.com/" target="_blank"><img src="../archivos/facebook.svg" alt="facebook" class="ic"></a>
+                    </div>
+                    <div class="col-4 cent arreglofooter">
+                      <a class="nav-link margen2 ic3" href="https://www.instagram.com/" target="_blank"><img src="../archivos/instagram.svg" alt="instagram" class="ic"></a>
+                    </div>
+                  </div> 
+                </div>
+                <div class="col-4 arreglofooter letrachica2">
+                  <p class="cent arreglofooter">© 2022 ITBANK S.A. <br>Todos los derechos Reservados</p>
+                </div>
+                <div class="col-2 arreglofooter">
+                  <div class="row">
+                    <div class="col-6 cent arreglofooter letrachica1">
+                      <a class="nav-link bl margen2 ic3" href="https://www.apple.com/app-store/" target="_blank"><img src="../archivos/apple.svg" alt="App store" class="ic4 ic5"><p class="ic3">App Store</p></a>
+                    </div>
+                    <div class="col-6 cent arreglofooter letrachica1">
+                      <a class="nav-link bl margen2 ic3" href="https://play.google.com/store?hl=es" target="_blank"><img src="../archivos/google-play.svg" alt="google Play" class="ic4"><p class="ic3">Google Play</p></a>
+                    </div>
+                </div>
+                <div class="col-2 arreglofooter"></div>
+              </div>
+            </div>
 
-        <div class="container pad">
-            <div class="row">
-                <div class="col-md-4">
-                    <h3>Solicitá un préstamo</h3>
-                    <p>Ingresá los datos y presioná calcular para obtener los resultados.</p>
-                    <form action="/solicitudPrestamo" method="GET">
-                        <div class="form-group">
-                            <label for="capitalLabel">Capital</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">$</div>
-                                </div>
-                                <input type="number" class="form-control" id="capital" name="capital" aria-describedby="capitalHelp" 
-                                max="100000" min="5000" placeholder="5000" required>
-                            </div>
-                            <small id="capitalHelp" class="form-text text-muted">Máximo $100000</small>
-                        </div>
-        
-                        <div class="form-group">
-                            <label for="plazoLabel">Duración del préstamo (en meses)</label>
-                            <input type="number" class="form-control" id="plazo" name="plazo" 
-                            aria-describedby="plazoHelp" max="72" min="1" placeholder="12" required>
-                            <small id="plazoHelp" class="form-text text-muted">Máximo 72 meses</small>
-                        </div>
-        
-                        <div class="form-group">
-                            <label for="sistemaLabel">Sistema de amortización</label>
-                            <select class="form-control" id="sistema" name="sistema" required>
-                                <option value="1">Francés</option>
-                                <option value="2">Alemán</option>
-                            </select>
-                            </div>
-        
-                        <button onclick="calcularAmort()" id="Calcular" type="button" class="btn btn-primary">Calcular</button>
-                        <button type="submit" id="solicitudPrestamo" class="btn btn-success">Solicitar</button>
-                        <button onclick="printJS({
-                             printable: 'tablaAmortizacion',
-                             type:'html',
-                             css: 'https:\/\/stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css',
-                             })"
-                            id="Imprimir" type="button" class="btn btn-alert">Imprimir</button>
-                    </form>
-                </div><!-- Columna izquierda -->
-        
-                <div class="col-md-8">
-                    <div class="right-area">
-                        <h3 class="alert alert-primary">Importe de la primera cuota</h3>
-                        <form>
-                            <div class="row">
-                                <label for="ResultadoCapital" class="col-sm-5 col-form-label">Amortización + Intereses</label>
-                                <div class="col-sm-3">
-                                    <label type="text" class="col-form-label importante" id="ResultadoCapital"></label>
-                                </div>
-                            </div>
-                            <div class="dropdown-divider"></div>
-                            
-    
-                            <div class="row">
-                                <label for="Fecha" class="col-sm-5 col-form-label">Fecha de pago</label>
-                                <div class="col-sm-3">
-                                    <label type="text" class="col-form-label" id="Fecha"></label>
-                                </div>
-                            </div>
-                            <div class="dropdown-divider"></div>
-                            <div class="row">
-                                <label for="Ingresos" class="col-sm-5 col-form-label">Ingresos Necesarios</label>
-                                <div class="col-sm-3">
-                                    <label type="text" class="col-form-label importante" id="Ingresos"></label>
-                                </div>
-                            </div>
-                        </form>
-        
-                        <h3 class="alert alert-primary">Tasas</h3>
-                        <form>
-                            <div class="row">
-                                    <abbr class="col-sm-5 col-form-label" for="tna" title="Tasa Nominal Anual">Tasa Nómina Anual</abbr>
-                                <div class="col-sm-3">
-                                    <label type="text" class="col-form-label" id="TNA"></label>
-                                </div>
-                            </div>
-                            <div class="dropdown-divider"></div>
-                            <div class="row">
-                                    <abbr class="col-sm-5 col-form-label" for="tem" title="Tasa Efectiva Mensual">Tasa Efectiva Mensual</abbr>
-                                <div class="col-sm-3">
-                                    <label type="text" class="col-form-label" id="TEM"></label>
-                                </div>
-                            </div>
-                        </form>
-                    </div><!-- right-area -->
-                </div><!-- Columna derecha -->
-            </div><!-- row -->
-            <div class="row" style="padding: 40px">
-                <table id="tablaAmortizacion" class="table table-hover table-striped">
-                    <caption id="descripcion">Tabla de amortización</caption>
-                    <thead>
-                        <tr class="table-primary">
-                            <th scope="col">#</th>
-                            <th scope="col">Interés</th>
-                            <th scope="col">Amortización</th>
-                            <th scope="col">Cuota</th>
-                            <th scope="col">Saldo</th>
-                        </tr>
-                    </thead>
-                    <tbody id="cuerpoTabla">
-                    </tbody>
-                </table>
-            </div><!-- Tabla -->
-        </div><!-- container -->
-
-        {% endblock %}
+            {% endblock %}
 
     </body>
-
 </html>
