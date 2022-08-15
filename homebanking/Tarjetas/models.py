@@ -22,7 +22,7 @@ class Tarjeta(models.Model):
     card_number = models.TextField(unique=True)
     cvv = models.TextField(db_column='CVV')  # Field name made lowercase.
     valid_from = models.DateField()
-    xpiration_date = models.DateField()
+    expiration_date = models.DateField()
     card_type = models.TextField()
     cardbrand_id = models.ForeignKey(MarcaTarjeta, on_delete=models.CASCADE)
 

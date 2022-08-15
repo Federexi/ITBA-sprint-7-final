@@ -12,14 +12,13 @@ def index3 (request):
     except:
         datacuenta = None
     
-    if largodatacuenta <= 1:
-        try:
-            datatarjeta = Tarjeta.objects.filter(account_id = datacuenta.account_id)
-        except: 
+    if largodatacuenta == 0: 
             datatarjeta = None
     else:
         datatarjeta = []
         for c in datacuenta:
             x = Tarjeta.objects.filter(account_id = c.account_id)
-            datatarjeta.append(x)
-    return render (request, 'Tarjetas/template/Tarjetas/gestiones.html', context={'datacliente':datacliente, 'datacuenta':datacuenta, 'datatarjeta':datatarjeta })
+            if x:
+                datatarjeta.append(x)
+
+    return render (request, 'Tarjetas/template/Tarjetas/gestiones.html', context={'datacliente':datacliente, 'datacuenta':datacuenta, 'datatarjeta':datatarjeta})

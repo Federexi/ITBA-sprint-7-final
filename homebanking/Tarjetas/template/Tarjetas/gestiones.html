@@ -44,11 +44,11 @@
         </div>
       
         {% for d in datatarjeta %}
-        
+        {% if d %}
         <div class="container-fluid contenido">
           <div class="row xd alineacion">
             <div class="col fondo1 marg cent">
-              Tarjetas Cuenta N°
+              Tarjetas Cuenta N°{{d.0.account_id}}
               <div class="row">
                 <div class="col espacio"> &nbsp</div>
               </div>
@@ -56,24 +56,35 @@
                 <div class="row">
                   <div class="col-2 pest-tarj-head redo1">Tipo</div>
                   <div class="col-5 pest-tarj-head">Número</div>
-                  <div class="col-3 pest-tarj-head">Marca</div>
-                  <div class="col-2 pest-tarj-head2 redo2">Exp.</div>
+                  <div class="col-3 pest-tarj-head">Exp</div>
+                  <div class="col-2 pest-tarj-head2 redo2">CVV</div>
                 </div>
+                {% with lista=d %}
+                {% for x in lista %}
                 <div class="row">
-                  <div class="col-2 pest-tarj3 redo1">Crédito</div>
-                  <div class="col-5 pest-tarj3">6540 5011 7804 2131</div>
-                  <div class="col-3 pest-tarj3">Visa</div>
-                  <div class="col-2 pest-tarj4 redo2">08/10/28</div>
+                  <div class="col-2 pest-tarj3 redo1">{{x.card_type}}</div>
+                  <div class="col-5 pest-tarj3">{{x.card_number}}</div>
+                  <div class="col-3 pest-tarj3">{{x.expiration_date}}</div> 
+                  <div class="col-2 pest-tarj4 redo2">{{x.cvv}}</div>
                 </div>
+                {% endfor %}
+                {% endwith %}
               </div>
             </div>
           </div>
         </div>
-        
+        {% endif %}
         {% endfor %}
 
-        
-
+        {% if not datatarjeta %}
+          <div class="container-fluid contenido">
+            <div class="row xd alineacion">
+              <div class="col fondo1 marg cent">
+                Actualmente no posee ninguna tarjeta 
+              </div>
+            </div>
+          </div>
+        {% endif %}
 
       {% endblock %}
     </body>

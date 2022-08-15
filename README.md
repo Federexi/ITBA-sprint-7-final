@@ -35,4 +35,4 @@ $ python3 manage.py runserver
 
 ## Grupo 3
 
-* Integrantes: Agustín Nahuel Bloise, Diego Ezequiel Benítez, Federico Bidarra y Lucas Lori.
+* Integrantes: Agustín Nahuel Bloise, Diego Ezequiel Benítez y Federico Bidarra.
