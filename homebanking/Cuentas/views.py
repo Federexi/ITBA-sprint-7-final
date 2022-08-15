@@ -15,11 +15,19 @@ def act (request):
         largodatacuenta = len(Cuenta.objects.filter(customer_id = datacliente.customer_id))
     except:
         datacuenta = None
-    try:
-        datamovimientos = Movimientos.objects.filter(movement_id = 1)
-    except:
-        datamovimientos = None
-    return render (request, 'Cuentas/template/Cuentas/actividad.html', context={'datacliente':datacliente, 'datacuenta':datacuenta, 'largodatacuenta':largodatacuenta, 'datamovimientos':datamovimientos })
+    
+    if largodatacuenta <= 1:
+        try:
+            datamovimientos = Movimientos.objects.filter(no_account = datacuenta.account_id)
+        except:
+            datamovimientos = None
+    else:
+        datamovimientos = []
+        for c in datacuenta:
+            x = Movimientos.objects.filter(no_account = c.account_id)
+            datamovimientos.append(x)
+
+    return render (request, 'Cuentas/template/Cuentas/actividad.html', context={'datacliente':datacliente, 'datacuenta':datacuenta, 'datamovimientos':datamovimientos })
 
 @login_required
 def conf (request):
@@ -33,7 +41,7 @@ def hub (request):
         largodatacuenta = len(Cuenta.objects.filter(customer_id = datacliente.customer_id))
     except:
         datacuenta = None
-    return render (request, 'Cuentas/template/Cuentas/hub.html', context={'datacliente':datacliente, 'datacuenta':datacuenta, 'largodatacuenta':largodatacuenta })
+    return render (request, 'Cuentas/template/Cuentas/hub.html', context={'datacliente':datacliente, 'datacuenta':datacuenta })
 
 @login_required
 def inv (request):

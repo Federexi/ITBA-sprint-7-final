@@ -33,7 +33,7 @@ class Movimientos(models.Model):
     no_account = models.IntegerField()
     amount = models.IntegerField()
     type_operation = models.TextField()
-    hour = models.DateField()
+    hour = models.CharField(max_length=200)
 
     class Meta:
         db_table = 'movimientos'

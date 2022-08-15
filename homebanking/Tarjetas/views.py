@@ -1,5 +1,25 @@
 from django.shortcuts import render
+from Clientes.models import Cliente
+from Cuentas.models import Cuenta
+from .models import Tarjeta
 
-# Create your views here.
+
 def index3 (request):
-    return render (request, 'Tarjetas/template/Tarjetas/gestiones.html')
+    datacliente = Cliente.objects.get(user_id = request.user.id)
+    try:
+        datacuenta = Cuenta.objects.filter(customer_id = datacliente.customer_id)
+        largodatacuenta = len(Cuenta.objects.filter(customer_id = datacliente.customer_id))
+    except:
+        datacuenta = None
+    
+    if largodatacuenta <= 1:
+        try:
+            datatarjeta = Tarjeta.objects.filter(account_id = datacuenta.account_id)
+        except: 
+            datatarjeta = None
+    else:
+        datatarjeta = []
+        for c in datacuenta:
+            x = Tarjeta.objects.filter(account_id = c.account_id)
+            datatarjeta.append(x)
+    return render (request, 'Tarjetas/template/Tarjetas/gestiones.html', context={'datacliente':datacliente, 'datacuenta':datacuenta, 'datatarjeta':datatarjeta })

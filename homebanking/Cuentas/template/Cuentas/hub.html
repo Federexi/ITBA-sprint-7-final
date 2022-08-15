@@ -73,9 +73,19 @@
             <hr class="hr2">
           </div>
           {% endfor %}
+          {% if not datacuenta %}
+          <div class="container-fluid contenido">
+            <div class="row xd alineacion">
+              <div class="col fondo1 marg cent">
+                Actualmente no posee ninguna cuenta 
+              </div>
+            </div>
+          </div>
+          {% endif %}
         </div>
       </div>  
-      <hr class="hr1">
+      
+      {% if datacuenta %}
       <div class="container-fluid contenido">
         <div class="row gap-3 xd">
           <div class="col-lg fondo1 cent">
@@ -90,21 +100,9 @@
           </div>
         </div>
       </div>
-        
-      {{datacliente.customer_id}}
+      {% endif %}
 
-      {% for c in datacuenta %}
-      {{c.account_id}}
-      {% endfor %}
-
-      {% for c in datacuenta %}
-      {{c.type}}
-      {{ c.balance }}
-      {% endfor %}
-
-      {{largodatacuenta}}
-
-        {% endblock %}
+      {% endblock %}
 
     </body>
 </html>

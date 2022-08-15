@@ -43,10 +43,12 @@
           </nav>
         </div>
       
+        {% for d in datatarjeta %}
+        
         <div class="container-fluid contenido">
           <div class="row xd alineacion">
             <div class="col fondo1 marg cent">
-              Tarjetas
+              Tarjetas Cuenta N°
               <div class="row">
                 <div class="col espacio"> &nbsp</div>
               </div>
@@ -63,65 +65,16 @@
                   <div class="col-3 pest-tarj3">Visa</div>
                   <div class="col-2 pest-tarj4 redo2">08/10/28</div>
                 </div>
-                <div class="row">
-                  <div class="col-2 pest-tarj redo1">Crédito</div>
-                  <div class="col-5 pest-tarj">4450 1364 9045 7264</div>
-                  <div class="col-3 pest-tarj">Mastercard</div>
-                  <div class="col-2 pest-tarj2 redo2">14/05/26</div>
-                </div>
-                <div class="row">
-                  <div class="col-2 pest-tarj3 redo1">Crédito</div>
-                  <div class="col-5 pest-tarj3">6540 5011 7804 2131</div>
-                  <div class="col-3 pest-tarj3">Visa</div>
-                  <div class="col-2 pest-tarj4 redo2">08/10/28</div>
-                </div>
-                <div class="row">
-                  <div class="col-2 pest-tarj redo1">Crédito</div>
-                  <div class="col-5 pest-tarj">4450 1364 9045 7264</div>
-                  <div class="col-3 pest-tarj">Mastercard</div>
-                  <div class="col-2 pest-tarj2 redo2">14/05/26</div>
-                </div>
-                <div class="row">
-                  <div class="col-2 pest-tarj3 redo1">Crédito</div>
-                  <div class="col-5 pest-tarj3">6540 5011 7804 2131</div>
-                  <div class="col-3 pest-tarj3">Visa</div>
-                  <div class="col-2 pest-tarj4 redo2">08/10/28</div>
-                </div>
-                <div class="row">
-                  <div class="col-2 pest-tarj redo1">Crédito</div>
-                  <div class="col-5 pest-tarj">4450 1364 9045 7264</div>
-                  <div class="col-3 pest-tarj">Mastercard</div>
-                  <div class="col-2 pest-tarj2 redo2">14/05/26</div>
-                </div>
-                <div class="row">
-                  <div class="col-2 pest-tarj3 redo1">Crédito</div>
-                  <div class="col-5 pest-tarj3">6540 5011 7804 2131</div>
-                  <div class="col-3 pest-tarj3">Visa</div>
-                  <div class="col-2 pest-tarj4 redo2">08/10/28</div>
-                </div>
-                <div class="row">
-                  <div class="col-2 pest-tarj redo1">Crédito</div>
-                  <div class="col-5 pest-tarj">4450 1364 9045 7264</div>
-                  <div class="col-3 pest-tarj">Mastercard</div>
-                  <div class="col-2 pest-tarj2 redo2">14/05/26</div>
-                </div>
-                <div class="row">
-                  <div class="col-2 pest-tarj3 redo1">Crédito</div>
-                  <div class="col-5 pest-tarj3">6540 5011 7804 2131</div>
-                  <div class="col-3 pest-tarj3">Visa</div>
-                  <div class="col-2 pest-tarj4 redo2">08/10/28</div>
-                </div>
-                <div class="row">
-                  <div class="col-2 pest-tarj redo1">Crédito</div>
-                  <div class="col-5 pest-tarj">4450 1364 9045 7264</div>
-                  <div class="col-3 pest-tarj">Mastercard</div>
-                  <div class="col-2 pest-tarj2 redo2">14/05/26</div>
-                </div>
               </div>
             </div>
           </div>
         </div>
-      
+        
+        {% endfor %}
+
+        
+
+
       {% endblock %}
     </body>
 </html>
