@@ -146,6 +146,19 @@
           </div>
         </div>
 
+        {{datacliente.customer_id}}
+
+        {% for c in datacuenta %}
+        {{c.account_id}}
+        {% endfor %}
+  
+        {% for c in datacuenta %}
+        {{c.type}}
+        {{ c.balance }}
+        {% endfor %}
+  
+        {{datamovimientos}}
+
         {% endblock %}
     </body>
 </html>

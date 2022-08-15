@@ -1,25 +1,39 @@
 
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-
+from Clientes.models import Cliente
+from .models import Cuenta
+from .models import Movimientos
 
 # Create your views here.
 
 @login_required
 def act (request):
-    return render (request, 'Cuentas/template/Cuentas/actividad.html')
+    datacliente = Cliente.objects.get(user_id = request.user.id)
+    try:
+        datacuenta = Cuenta.objects.filter(customer_id = datacliente.customer_id)
+        largodatacuenta = len(Cuenta.objects.filter(customer_id = datacliente.customer_id))
+    except:
+        datacuenta = None
+    try:
+        datamovimientos = Movimientos.objects.filter(movement_id = 1)
+    except:
+        datamovimientos = None
+    return render (request, 'Cuentas/template/Cuentas/actividad.html', context={'datacliente':datacliente, 'datacuenta':datacuenta, 'largodatacuenta':largodatacuenta, 'datamovimientos':datamovimientos })
 
 @login_required
 def conf (request):
     return render (request, 'Cuentas/template/Cuentas/configuracion.html')
 
 @login_required
-def cuenta (request):
-    return render (request, 'Cuentas/template/Cuentas/cuenta.html')
-
-@login_required
 def hub (request):
-    return render (request, 'Cuentas/template/Cuentas/hub.html')
+    datacliente = Cliente.objects.get(user_id = request.user.id)
+    try:
+        datacuenta = Cuenta.objects.filter(customer_id = datacliente.customer_id)
+        largodatacuenta = len(Cuenta.objects.filter(customer_id = datacliente.customer_id))
+    except:
+        datacuenta = None
+    return render (request, 'Cuentas/template/Cuentas/hub.html', context={'datacliente':datacliente, 'datacuenta':datacuenta, 'largodatacuenta':largodatacuenta })
 
 @login_required
 def inv (request):
