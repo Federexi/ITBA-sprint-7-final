@@ -8,15 +8,19 @@ Script que une el homebanking realizado en sprints anteriores y lo hace funciona
 
 * Django https://www.djangoproject.com/download/
 
+## Librerias
+
+* Mathfilters https://pypi.org/project/django-mathfilters/
+
 ## Instalacion
 
 Para instalar en Linux
 
 $ sudo apt-get install python3
 
-Para instalar Django en python
+Para instalar el resto de los requerimientos
 
-$ pip install Django
+$ pip install -r requirements.txt
 
 ## Correr el programa
 
@@ -24,8 +28,7 @@ $ pip install Django
 $ python3 -m venv env
 $ python3 env/scripts/activate
 
-* Instalar django:
-$ pip install Django
+* Instalar requerimientos
 
 * Posicionarse en el directorio "homebanking":
 $ cd homebanking

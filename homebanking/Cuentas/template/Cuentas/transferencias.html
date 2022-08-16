@@ -1,5 +1,6 @@
 {% extends "Cuentas/template/Cuentas/base.html" %}
 {% load static %}
+{% load mathfilters %}
 
 <html>
     <head>
@@ -58,13 +59,13 @@
                       {% endif %}
                       {% for c in datacuenta %}
                       {% if c.type == "Caja de ahorro en pesos" %}
-                      <option value="CTAARS">CTA $ {{c.iban}} (${{c.balance}})</option>
+                      <option value="CTAARS">CTA $ {{c.iban}} (${{c.balance|div:100}})</option>
                       {% endif %}
                       {% if c.type == 'Caja de ahorro en dólares' %}
-                      <option value="CTAUSD">CTA U$D {{c.iban}} (U$D{{c.balance}})</option>
+                      <option value="CTAUSD">CTA U$D {{c.iban}} (U$D{{c.balance|div:100}})</option>
                       {% endif %}
                       {% if c.type == 'Cuenta Corriente' %}
-                      <option value="CTACORR">CTACORR $ {{c.iban}} (${{c.balance}})</option>
+                      <option value="CTACORR">CTACORR $ {{c.iban}} (${{c.balance|div:100}})</option>
                       {% endif %}
                       {% endfor %}
                     </select>

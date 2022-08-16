@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'Login.apps.LoginConfig',
     'Prestamos.apps.PrestamosConfig',
     'Tarjetas.apps.TarjetasConfig',
+    'mathfilters'
 ]
 
 MIDDLEWARE = [

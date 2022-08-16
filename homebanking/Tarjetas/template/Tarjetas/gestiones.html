@@ -55,16 +55,16 @@
               <div class="container-fluid borde-tarj">
                 <div class="row">
                   <div class="col-2 pest-tarj-head redo1">Tipo</div>
-                  <div class="col-4 pest-tarj-head">Número</div>
-                  <div class="col-4 pest-tarj-head">Expira</div>
+                  <div class="col-6 pest-tarj-head">Número</div>
+                  <div class="col-2 pest-tarj-head">Expira</div>
                   <div class="col-2 pest-tarj-head2 redo2">CVV</div>
                 </div>
                 {% with lista=d %}
                 {% for x in lista %}
                 <div class="row">
                   <div class="col-2 pest-tarj3 redo1">{{x.card_type}}</div>
-                  <div class="col-4 pest-tarj3">{{x.card_number}}</div>
-                  <div class="col-4 pest-tarj3">{{x.xpiration_date}}</div> 
+                  <div class="col-6 pest-tarj3">{{x.card_number}}</div>
+                  <div class="col-2 pest-tarj3">{{x.xpiration_date|date:"m/y"}}</div> 
                   <div class="col-2 pest-tarj4 redo2">{{x.cvv}}</div>
                 </div>
                 {% endfor %}

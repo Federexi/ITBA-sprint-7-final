@@ -1,5 +1,6 @@
 {% extends "Cuentas/template/Cuentas/base.html" %}
 {% load static %}
+{% load mathfilters %}
 
 <html>
     <head>
@@ -66,7 +67,7 @@
               </div>
               <div class="row">
                 <div class="col numcuenta">
-                  $ {{c.balance}}
+                  $ {{c.balance|div:100}}
                 </div>
               </div>
             </div>

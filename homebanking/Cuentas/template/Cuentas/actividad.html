@@ -1,5 +1,6 @@
 {% extends "Cuentas/template/Cuentas/base.html" %}
 {% load static %}
+{% load mathfilters %}
 
 <html>
     <head>
@@ -58,7 +59,7 @@
               <div class="row achico letramedia">
                 <div class="col-2 movim redo1">{{x.hour}}</div>
                 <div class="col-8 movim medio">{{x.type_operation}}</div>
-                <div class="col-2 movim3 redo2">${{x.amount}}
+                <div class="col-2 movim3 redo2">${{x.amount|div:100}}
                       <a href=""><img src= "{% static 'images/arrow-right-circle-fill.svg' %}" class="icono"></a>
                 </div>
               </div>
