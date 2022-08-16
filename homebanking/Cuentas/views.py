@@ -38,7 +38,6 @@ def hub (request):
     datacliente = Cliente.objects.get(user_id = request.user.id)
     try:
         datacuenta = Cuenta.objects.filter(customer_id = datacliente.customer_id)
-        largodatacuenta = len(Cuenta.objects.filter(customer_id = datacliente.customer_id))
     except:
         datacuenta = None
     return render (request, 'Cuentas/template/Cuentas/hub.html', context={'datacliente':datacliente, 'datacuenta':datacuenta })
@@ -53,4 +52,9 @@ def seg (request):
 
 @login_required
 def transf (request):
-    return render (request, 'Cuentas/template/Cuentas/transferencias.html')
+    datacliente = Cliente.objects.get(user_id = request.user.id)
+    try:
+        datacuenta = Cuenta.objects.filter(customer_id = datacliente.customer_id)
+    except:
+        datacuenta = None
+    return render (request, 'Cuentas/template/Cuentas/transferencias.html', context={'datacliente':datacliente, 'datacuenta':datacuenta})

@@ -17,7 +17,7 @@
               </button>
               <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                 <div class="offcanvas-header">
-                  <img src="../archivos/logo itbank.png" alt="Logo itbank" class="d-inline-block align-text-top logo">
+                  <img src="{% static 'images/logo itbank.png' %}" alt="Logo itbank" class="d-inline-block align-text-top logo">
                   <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
@@ -50,8 +50,23 @@
                   <div class="mb-2">
                     <label for="cuentadeorigen" class="form-label"> Cuenta de origen </label>
                     <select name="" id="cuentadeorigen" class="form-control">
-                      <option value="CTAARS">CTA $ 810-008909/7 ($82.366,24)</option>
-                      <option value="CTAUSD">CTA U$D 810-008909/7 ($524.09)</option>
+                      {% if not datacuenta %}
+                      <option value="SEL">Actualmente no posee cuentas</option>
+                      {% endif %}
+                      {% if datacuenta %}
+                      <option value="SEL">Seleccione una cuenta</option>
+                      {% endif %}
+                      {% for c in datacuenta %}
+                      {% if c.type == "Caja de ahorro en pesos" %}
+                      <option value="CTAARS">CTA $ {{c.iban}} (${{c.balance}})</option>
+                      {% endif %}
+                      {% if c.type == 'Caja de ahorro en dólares' %}
+                      <option value="CTAUSD">CTA U$D {{c.iban}} (U$D{{c.balance}})</option>
+                      {% endif %}
+                      {% if c.type == 'Cuenta Corriente' %}
+                      <option value="CTACORR">CTACORR $ {{c.iban}} (${{c.balance}})</option>
+                      {% endif %}
+                      {% endfor %}
                     </select>
                   </div>
                   <div class="mb-2">
@@ -107,3 +122,4 @@
     </body>
 
 </html>
+
