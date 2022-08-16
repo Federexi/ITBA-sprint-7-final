@@ -26,7 +26,7 @@ $ pip install -r requirements.txt
 
 * Crear ambiente virtual y activarlo:
 $ python3 -m venv env
-$ python3 env/scripts/activate
+$ env/scripts/activate
 
 * Instalar requerimientos
 
