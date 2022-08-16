@@ -5,7 +5,6 @@ from Clientes.models import Cliente
 from .models import Cuenta
 from .models import Movimientos
 
-# Create your views here.
 
 @login_required
 def act (request):

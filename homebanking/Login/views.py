@@ -17,26 +17,6 @@ from django.urls import reverse_lazy
 def index1 (request):
     return render (request, 'Login/templates/registration/login.html')
 
-#view de registro  anterior
-"""def signup(request):
-    data = {
-        'form':CustomUserForm()
-    }
-
-    if request.method == 'POST':
-        formulario = CustomUserForm(request.POST)
-        if formulario.is_valid():
-            formulario.save()
-            username = formulario.cleaned_data['username']
-            password = formulario.cleaned_data['password1']
-            user = authenticate(username=username, password=password)
-            login(request, user)
-            return redirect('hub')
-
-
-    return render(request,'Login/templates/registration/registro.html', data)"""
-
-
 
 class signup(generic.CreateView):
     template_name = 'registration/registro.html'

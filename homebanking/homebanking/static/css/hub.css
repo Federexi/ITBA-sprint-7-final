@@ -309,14 +309,7 @@ hr{
     font-size: 90%;
     font-weight: 900;
     background-color: rgb(201, 201, 201);
-    border-right: solid 1px rgb(54, 54, 54);
-    padding: 1% 0;
-}
-
-.pest-tarj-head2{
-    font-size: 90%;
-    font-weight: 900;
-    background-color: rgb(201, 201, 201);
+    border: solid 1px rgb(54, 54, 54);
     padding: 1% 0;
 }
 
@@ -339,15 +332,12 @@ hr{
     font-size: 85%;
     font-weight: 700;
     background-color: white;
-    border-right: solid 1px rgb(54, 54, 54);
+    border: solid 1px rgb(201, 201, 201);
     padding: 1% 0;
 }
 
-.pest-tarj4{
-    font-size: 85%;
-    font-weight: 700;
-    background-color: white;
-    padding: 1% 0;
+.margtarj{
+    margin-bottom: 1%;
 }
 
 .tarj{
@@ -507,7 +497,81 @@ hr{
     font-weight: 700;
 }
 
+.log{
+    background-color:rgb(255, 255, 255);
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 424px;
+}
 
+.titlog{
+    font-weight: 700;
+    font-size: 150%;
+    margin-top: 5%;
+}
+
+.formutxt{
+    text-align: left;
+}
+
+.label{
+    color: black;
+    font-weight: 700;
+    font-size: 90%;
+}
+
+.pielog{
+    color: darkgray;
+    text-decoration: none;
+    font-size: 85%;
+}
+
+.pielog:hover{
+    color: black;
+}
+
+.campo{
+    border: none;
+    border-bottom: 1.3px solid rgb(0, 0, 0);
+    background: transparent;
+    width: 100%;
+    outline: none;
+}
+
+.botlog{
+    border: none;
+    outline: none;
+    background:#1A2542;
+    color: #fff;
+    border-radius: 20px;
+    width: 100%;
+    height: 40px;
+}
+
+.marglog{
+    margin-bottom: 1.5%;
+}
+
+.marglog2{
+    margin-bottom: 5%;
+}
+
+.vertical-center{
+    min-height: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.llamoinput input{
+    width: 100%;
+    border: none;
+    border-bottom: 1.3px solid rgb(0, 0, 0);
+    background: transparent;
+    outline: none;
+}
 
 /* media */
 
@@ -569,9 +633,6 @@ hr{
         font-size: 70%;
     }
     .pest-tarj3{
-        font-size: 70%;
-    }
-    .pest-tarj4{
         font-size: 70%;
     }
     .tarj2{
@@ -648,9 +709,6 @@ hr{
     .pest-tarj3{
         font-size: 60%;
     }
-    .pest-tarj4{
-        font-size: 60%;
-    }
     .numcuenta{
         font-size: 120%;
     }
@@ -694,9 +752,6 @@ hr{
         font-size: 50%;
     }
     .pest-tarj3{
-        font-size: 50%;
-    }
-    .pest-tarj4{
         font-size: 50%;
     }
     .fondo2{
@@ -822,14 +877,14 @@ hr{
     .pest-tarj3{
         font-size: 35%;
     }
-    .pest-tarj4{
-        font-size: 35%;
-    }
     .fondo2{
         font-size: 45%;
     }
     .fondo3{
         font-size: 90%;
+    }
+    .log{
+        width: 95%; 
     }
 
 }
