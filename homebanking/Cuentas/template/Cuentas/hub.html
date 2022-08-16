@@ -3,7 +3,7 @@
 
 <html>
     <head>
-        {% block title %} ITBANK-inicio {% endblock %}
+        {% block title %} ITBANK - Inicio {% endblock %}
         {% block extrahead %} 
         <link type="text/css" href="{% static 'css/hub.css' %}" rel="stylesheet">
         {% endblock %}
@@ -86,15 +86,15 @@
       </div>  
       
       {% if datacuenta %}
-      <div class="container-fluid contenido">
+      <div class="container-fluid contenido mtop">
         <div class="row gap-3 xd">
-          <div class="col-lg fondo1 cent">
+          <div class="col-lg fondo1 cent depositbox">
             <div class="row">
               <div class="col">
-                <a href="transferencias.html"><button type="button" class="btn btn-secondary boton boton3">Depositar</button></a>
+                <a href="{% url 'transf' %}"><button type="button" class="btn btn-secondary boton boton3">Depositar</button></a>
               </div>
               <div class="col">
-                <a href="transferencias.html"><button type="button" class="btn btn-secondary boton boton3">Transferir</button></a>
+                <a href="{% url 'transf' %}"><button type="button" class="btn btn-secondary boton boton3">Transferir</button></a>
               </div>
             </div>
           </div>

@@ -187,6 +187,35 @@ body{
     box-shadow: 1px 1px 10px #8c8c8c;
 }
 
+.fondo2{
+    background-color:white;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    font-weight: 900;
+    border-radius: 10px;
+    font-size: 130%;
+    box-shadow: 1px 1px 10px #8c8c8c;
+}
+.fondo3{
+    background-color:white;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    font-weight: 900;
+    border-radius: 10px;
+    font-size: 150%;
+    box-shadow: 1px 1px 10px #8c8c8c;
+}
+
+
+.mtop{
+    margin-top: 0.7%;
+}
+
+.depositbox{
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
 hr{
     margin: 5px 0px;
     height: 2px;
@@ -396,6 +425,10 @@ hr{
     padding: 1% 0.55em;
 }
 
+.marg2{
+    padding: 1% 0.55em 0.5%;
+}
+
 .icono{
     width: 20px;
     height: auto;
@@ -442,7 +475,7 @@ hr{
 }
 
 .achico{
-    margin: 0 0.03%;
+    margin: 0 0.03% 1%;
 }
 
 .redo1{
@@ -475,6 +508,7 @@ hr{
 }
 
 
+
 /* media */
 
 @media only screen and (min-width: 100px) and (max-width: 1750px){
@@ -494,6 +528,7 @@ hr{
     .numcuenta{
         font-size: 200%;
     }
+
 }
 
 @media only screen and (min-width: 100px) and (max-width: 1450px){
@@ -516,6 +551,9 @@ hr{
     }
     .numcuenta{
         font-size: 180%;
+    }
+    .fondo2{
+        font-size: 110%;
     }
 }
 @media only screen and (min-width: 100px) and (max-width: 1290px){
@@ -576,6 +614,15 @@ hr{
     .txtcuenta{
         font-size: 80%;
     }
+    .mtop{
+        margin-top: 1%;
+    }
+    .head2{
+        margin-bottom: 1.5%;
+    }
+    .fondo2{
+        font-size: 90%;
+    }
 }
 
 @media only screen and (min-width: 100px) and (max-width: 1060px){
@@ -629,6 +676,13 @@ hr{
     .txtcuenta{
         font-size: 90%;
     }
+    .mtop{
+        margin-top: 1.5%;
+    }
+    .fondo2{
+        font-size: 75%;
+    }
+
 }
 
 @media only screen and (min-width: 100px) and (max-width: 870px){
@@ -644,6 +698,12 @@ hr{
     }
     .pest-tarj4{
         font-size: 50%;
+    }
+    .fondo2{
+        font-size: 65%;
+    }
+    .fondo3{
+        font-size: 110%;
     }
 
 }
@@ -689,6 +749,9 @@ hr{
     .ic{
         padding-top: 5px;
     }
+    .head2{
+        margin-bottom: 2.5%;
+    }
 
 }
 
@@ -708,6 +771,9 @@ hr{
     }
     .salir{
         text-align: right;
+    }
+    .head2{
+        margin-bottom: 3.5%;
     }
 
 }
@@ -759,6 +825,13 @@ hr{
     .pest-tarj4{
         font-size: 35%;
     }
+    .fondo2{
+        font-size: 45%;
+    }
+    .fondo3{
+        font-size: 90%;
+    }
+
 }
 
 @media only screen and (min-width: 100px) and (max-width: 260px){

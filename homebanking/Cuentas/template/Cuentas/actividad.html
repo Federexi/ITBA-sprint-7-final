@@ -3,7 +3,7 @@
 
 <html>
     <head>
-        {% block title %} ITBANK-actividad {% endblock %}
+        {% block title %} ITBANK - Actividad {% endblock %}
         {% block extrahead %} 
         <link type="text/css" href="{% static 'css/hub.css' %}" rel="stylesheet">
         {% endblock %}
@@ -48,7 +48,7 @@
         {% if d %}
         <div class="container-fluid contenido">
           <div class="row xd alineacion">
-            <div class="col fondo1 marg cent">
+            <div class="col fondo3 marg2 cent">
               Ultimos Movimientos Cuenta N°{{d.0.no_account}}
               <div class="row">
                 <div class="col espacio"> &nbsp</div>
@@ -70,9 +70,9 @@
         {% endif %}
         {% endfor %}
 
-        <div class="container-fluid contenido">
+        <div class="container-fluid contenido mtop">
           <div class="row xd alineacion">
-            <div class="col fondo1 marg cent">
+            <div class="col fondo2 marg cent">
               Si posee una o más cuentas las visualizará al tener al menos un movimiento 
             </div>
           </div>

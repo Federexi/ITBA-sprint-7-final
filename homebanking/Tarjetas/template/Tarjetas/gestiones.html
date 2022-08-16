@@ -3,7 +3,7 @@
 
 <html>
     <head>
-        {% block title %} ITBANK-gestiones {% endblock %}
+        {% block title %} ITBANK - Tarjetas {% endblock %}
         {% block extrahead %} 
         <link type="text/css" href="{% static 'css/hub.css' %}" rel="stylesheet">
         {% endblock %}
@@ -45,9 +45,9 @@
       
         {% for d in datatarjeta %}
         {% if d %}
-        <div class="container-fluid contenido">
+        <div class="container-fluid contenido mtop">
           <div class="row xd alineacion">
-            <div class="col fondo1 marg cent">
+            <div class="col fondo3 marg cent">
               Tarjetas Cuenta N°{{d.0.account_id}}
               <div class="row">
                 <div class="col espacio"> &nbsp</div>
@@ -55,16 +55,16 @@
               <div class="container-fluid borde-tarj">
                 <div class="row">
                   <div class="col-2 pest-tarj-head redo1">Tipo</div>
-                  <div class="col-5 pest-tarj-head">Número</div>
-                  <div class="col-3 pest-tarj-head">Exp</div>
+                  <div class="col-4 pest-tarj-head">Número</div>
+                  <div class="col-4 pest-tarj-head">Expira</div>
                   <div class="col-2 pest-tarj-head2 redo2">CVV</div>
                 </div>
                 {% with lista=d %}
                 {% for x in lista %}
                 <div class="row">
                   <div class="col-2 pest-tarj3 redo1">{{x.card_type}}</div>
-                  <div class="col-5 pest-tarj3">{{x.card_number}}</div>
-                  <div class="col-3 pest-tarj3">{{x.xpiration_date}}</div> 
+                  <div class="col-4 pest-tarj3">{{x.card_number}}</div>
+                  <div class="col-4 pest-tarj3">{{x.xpiration_date}}</div> 
                   <div class="col-2 pest-tarj4 redo2">{{x.cvv}}</div>
                 </div>
                 {% endfor %}

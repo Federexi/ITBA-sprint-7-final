@@ -6,8 +6,11 @@ from django.views.generic import CreateView
 from django.views import generic
 from .forms import LoanForm
 from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 # Create your views here.
 
+@method_decorator(login_required, name='dispatch')
 class LoanRequest(generic.CreateView):
     form_class = LoanForm
     success_url = reverse_lazy('prestamos')
