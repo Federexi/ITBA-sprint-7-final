@@ -4,7 +4,7 @@
 
 <html>
     <head>
-        {% block title %} ITBANK - Préstamos {% endblock %}
+        {% block title %} ITBANK- Prestamos {% endblock %}
         {% block extrahead %} 
         <link type="text/css" href="{% static 'css/prestamos.css' %}" rel="stylesheet">
         {% endblock %}        
@@ -44,35 +44,24 @@
             </nav>
           </div>
       
-      
-      
-          <div class="container pad">
-              <div class="row">
-                  <div class="col-md-4">
-                      <h3>Solicitá un préstamo</h3>
-                      <p>Ingresá los datos y solicita tu pre-aprobración.</p>
-                      <div class="container">
-                        {% if success_msg %}
-                            <p class="alert alert-success">{{success_msg}}</p>
-                        {% endif %}
-                        <form method="POST">
-                            {% csrf_token %}
-                            {% for field in form %}
-                                <div class="form-group">    
-                                    <label for="{{field.label}}">{{field.label}}</label>
-                                    {{field}}
-                                </div>
-                                {% for error in field.errors %}
-                                  <p>{{error}}</p>
-                                {% endfor %}
-                            {% endfor %}
-                            <button type="submit" class="btn btn-primary">Solicitar</button>
-                        </form>
+          <div class="container">
+            {% if success_msg %}
+                <p class="alert alert-success">{{success_msg}}</p>
+            {% endif %}
+            <form method="POST">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group">    
+                        <label for="{{field.label}}">{{field.label}}</label>
+                        {{field}}
                     </div>
-                  </div>
-                </div>
-            </div>
-
+                    {% for error in field.errors %}
+                      <p>{{error}}</p>
+                    {% endfor %}
+                {% endfor %}
+                <input type="submit" value="request">
+            </form>
+        </div>
             {% endblock %}
     </body>
 </html>
