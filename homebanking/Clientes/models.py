@@ -27,6 +27,17 @@ class Cliente(models.Model):
     customer_type = models.ForeignKey(TipoCliente, models.DO_NOTHING)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
+    def approve_loan(self, amount):
+        if self.customer_type == 'BLACK' and amount <= 500000:
+            return True
+
+        if self.customer_type == 'GOLD' and amount <= 300000:
+            return True
+
+        if self.customer_type == 'CLASSIC' and amount <= 100000:
+            return True
+        return False
+
     class Meta:
         db_table = 'cliente'
 

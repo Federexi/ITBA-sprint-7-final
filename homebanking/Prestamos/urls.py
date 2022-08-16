@@ -3,6 +3,5 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('prestamos/', views.index2, name = 'prestamos'),
-
+    path('prestamos/', views.LoanRequest.as_view(), name = 'prestamos'),
 ]
