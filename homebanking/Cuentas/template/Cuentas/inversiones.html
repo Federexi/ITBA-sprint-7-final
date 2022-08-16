@@ -1,7 +1,10 @@
 {% load static %}
 <html>
     <head>
-        <link rel="shortcut icon" href="../archivos/favicon.ico" type="image/x-icon">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -9,6 +12,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
         <link type="text/css" href="{% static 'css/inversiones.css' %}" rel="stylesheet">
         <link type="text/css" href="{% static 'css/base.css' %}" rel="stylesheet">
+        <link type="text/css" href="{% static 'css/inicio.css' %}" rel="stylesheet">
         <title>ITBANK - Inversiones</title>
     </head>
 
@@ -49,7 +53,7 @@
                   </button>
                   <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                     <div class="offcanvas-header">
-                      <img src="../archivos/logo itbank.png" alt="Logo itbank" class="d-inline-block align-text-top logo">
+                      <img src="{% static 'images/logo itbank.png' %}" alt="Logo itbank" class="d-inline-block align-text-top logo">
                       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
