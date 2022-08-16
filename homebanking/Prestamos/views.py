@@ -22,8 +22,9 @@ class LoanRequest(generic.CreateView):
         if not cliente.approve_loan(form.cleaned_data.get('loan_total')):
             form.add_error(field = None, error = 'Prestamo no aprobado')
             return self.form_invalid(form)
+        
         else:
-            form.instance.customer_id = cliente
+            form.instance.customer_id = cliente.customer_id
             super(LoanRequest, self).form_valid(form)
 
-            return render(self.request, 'Prestamos/template/Prestamos/prestamos.html', context={'form': form, 'success_msg': 'Prestamo aprobado!'})
+        return render(self.request, 'Prestamos/template/Prestamos/prestamos.html', context={'form': form, 'success_msg': 'Prestamo aprobado!'})

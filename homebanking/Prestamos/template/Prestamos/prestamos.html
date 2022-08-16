@@ -48,6 +48,9 @@
             {% if success_msg %}
                 <p class="alert alert-success">{{success_msg}}</p>
             {% endif %}
+            {% for error in form.non_field_errors %}
+            <p class="alert alert-danger">{{error}}</p>
+            {% endfor %}
             <form method="POST">
                 {% csrf_token %}
                 {% for field in form %}
@@ -55,11 +58,8 @@
                         <label for="{{field.label}}">{{field.label}}</label>
                         {{field}}
                     </div>
-                    {% for error in field.errors %}
-                      <p>{{error}}</p>
-                    {% endfor %}
                 {% endfor %}
-                <input type="submit" value="request">
+                <button type="submit">Request</button>
             </form>
         </div>
             {% endblock %}
