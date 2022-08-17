@@ -10,6 +10,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from datetime import datetime
+from django.db import connection
 
 
 @method_decorator(login_required, name='dispatch')
@@ -22,11 +23,13 @@ class LoanRequest(generic.CreateView):
         user = self.request.user
         cliente = Cliente.objects.get(user_id = user.id)
         hoy = datetime.date(datetime.now())
+        currenttime = datetime.now()
+        hora = currenttime.strftime('%H:%M:%S')
         diaenform = form.cleaned_data.get('loan_date')
         datacuenta = Cuenta.objects.filter(customer_id = cliente.customer_id)
         cuentapesos = None
         cuentacorri = None
-
+        
         for c in datacuenta:
             if c.type == 'Caja de ahorro en pesos':
                 cuentapesos = c.account_id
@@ -36,6 +39,22 @@ class LoanRequest(generic.CreateView):
                 if c.type == 'Cuenta Corriente':
                     cuentacorri = c.account_id
                     break
+        
+        if cuentapesos:
+            numerocuenta = cuentapesos
+        else:
+            numerocuenta = cuentacorri
+
+        montoenform = form.cleaned_data.get('loan_total')
+        montoactualizado = montoenform * 100
+
+        def balanceupdate(self,montoactualizado,numerocuenta):
+            with connection.cursor() as cursor:
+                cursor.execute("UPDATE cuenta SET balance = balance + %s WHERE account_id = %s", [montoactualizado, numerocuenta])
+
+        def movimupdate(self,numerocuenta,montoenform,hora):
+            with connection.cursor() as cursor:
+                cursor.execute("INSERT INTO movimientos(no_account, amount, type_operation, hour) VALUES(%s, %s, 'Préstamo', %s)", [numerocuenta,montoenform,hora])
 
         if not datacuenta:
             form.add_error(field = None, error = 'El cliente no posee una cuenta')
@@ -50,6 +69,8 @@ class LoanRequest(generic.CreateView):
             return self.form_invalid(form)
 
         else:
+            balanceupdate(self,montoactualizado,numerocuenta)
+            movimupdate(self,numerocuenta,montoenform,hora)
             form.instance.customer_id = cliente.customer_id
             super(LoanRequest, self).form_valid(form)
 

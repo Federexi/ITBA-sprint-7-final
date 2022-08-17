@@ -8,9 +8,6 @@ Script que une el homebanking realizado en sprints anteriores y lo hace funciona
 
 * Django https://www.djangoproject.com/download/
 
-## Librerias
-
-* Mathfilters https://pypi.org/project/django-mathfilters/
 
 ## Instalacion
 

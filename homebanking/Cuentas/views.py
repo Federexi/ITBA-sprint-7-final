@@ -17,7 +17,7 @@ def act (request):
     
     if largodatacuenta <= 1:
         try:
-            datamovimientos = Movimientos.objects.filter(no_account = datacuenta.account_id)
+            datamovimientos = [Movimientos.objects.filter(no_account = datacuenta[0].account_id)]
         except:
             datamovimientos = None
     else:
@@ -26,7 +26,7 @@ def act (request):
             x = Movimientos.objects.filter(no_account = c.account_id)
             datamovimientos.append(x)
 
-    return render (request, 'Cuentas/template/Cuentas/actividad.html', context={'datacliente':datacliente, 'datacuenta':datacuenta, 'datamovimientos':datamovimientos })
+    return render (request, 'Cuentas/template/Cuentas/actividad.html', context={'datacliente':datacliente, 'datacuenta':datacuenta, 'datamovimientos':datamovimientos, 'largodatacuenta': largodatacuenta })
 
 @login_required
 def conf (request):
