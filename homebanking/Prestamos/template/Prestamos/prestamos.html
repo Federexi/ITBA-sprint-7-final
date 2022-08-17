@@ -44,7 +44,7 @@
             </nav>
           </div>
       
-          <div class="container">
+          <!-- <div class="container">
             {% if success_msg %}
                 <p class="alert alert-success">{{success_msg}}</p>
             {% endif %}
@@ -61,7 +61,47 @@
                 {% endfor %}
                 <button type="submit">Request</button>
             </form>
-        </div>
-            {% endblock %}
+          </div> -->
+
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6 offset-md-3">
+                <h2>Solicitá tu préstamo</h2>
+                <hr>
+                <form method="POST">
+                  {% csrf_token %}
+                  {% for field in form %}
+                    {% if not field.label == 'Loan date' %}
+                      <div class="form-group mb-2">    
+                          <label for="{{field.label}}" class="form-label">{{field.label}}</label>
+                          {{field}}
+                      </div>
+                      {% endif %}
+                      {% if field.label == 'Loan date' %}
+                      <div class="form-group mb-2">    
+                        <label for="{{field.label}}" class="form-label">{{field.label}} (DD/MM/YYYY)</label>
+                        {{field}}
+                      </div>
+                      {% endif %}
+                  {% endfor %}
+                  <br>
+                  <hr>
+                  <br>
+                  <button type="submit" class="btn btn-primary btn-md col-12" >Solicitar</button>
+                  <br>
+                </form>
+                {% if success_msg %}
+                  <p class="alert alert-success cent">{{success_msg}}</p>
+                {% endif %}
+                {% for error in form.non_field_errors %}
+                  <p class="alert alert-danger cent">{{error}}</p>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+
+
+          {% endblock %}
+
     </body>
 </html>

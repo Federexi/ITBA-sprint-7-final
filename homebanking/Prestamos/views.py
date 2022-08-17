@@ -8,6 +8,7 @@ from .forms import LoanForm
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from datetime import datetime
 
 
 @method_decorator(login_required, name='dispatch')
@@ -19,12 +20,19 @@ class LoanRequest(generic.CreateView):
     def form_valid(self, form):
         user = self.request.user
         cliente = Cliente.objects.get(user_id = user.id)
+        hoy = datetime.date(datetime.now())
+        diaenform = form.cleaned_data.get('loan_date')
+        
         if not cliente.approve_loan(form.cleaned_data.get('loan_total')):
-            form.add_error(field = None, error = 'Prestamo no aprobado')
+            form.add_error(field = None, error = 'Préstamo rechazado')
             return self.form_invalid(form)
         
+        if not diaenform >= hoy:
+            form.add_error(field = None, error = 'La fecha solicitada es inválida')
+            return self.form_invalid(form)
+
         else:
             form.instance.customer_id = cliente.customer_id
             super(LoanRequest, self).form_valid(form)
 
-        return render(self.request, 'Prestamos/template/Prestamos/prestamos.html', context={'form': form, 'success_msg': 'Prestamo aprobado!'})
+        return render(self.request, 'Prestamos/template/Prestamos/prestamos.html', context={'form': form, 'success_msg': 'Préstamo aprobado!'})
