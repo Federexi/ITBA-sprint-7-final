@@ -44,24 +44,6 @@
             </nav>
           </div>
       
-          <!-- <div class="container">
-            {% if success_msg %}
-                <p class="alert alert-success">{{success_msg}}</p>
-            {% endif %}
-            {% for error in form.non_field_errors %}
-            <p class="alert alert-danger">{{error}}</p>
-            {% endfor %}
-            <form method="POST">
-                {% csrf_token %}
-                {% for field in form %}
-                    <div class="form-group">    
-                        <label for="{{field.label}}">{{field.label}}</label>
-                        {{field}}
-                    </div>
-                {% endfor %}
-                <button type="submit">Request</button>
-            </form>
-          </div> -->
 
           <div class="container">
             <div class="row">
@@ -91,7 +73,12 @@
                   <br>
                 </form>
                 {% if success_msg %}
-                  <p class="alert alert-success cent">{{success_msg}}</p>
+                  {% if cuentapesos %}
+                    <p class="alert alert-success cent">{{success_msg}} en cuenta N°{{cuentapesos}}</p>
+                  {% endif %}
+                  {% if cuentacorri %}
+                    <p class="alert alert-success cent">{{success_msg}} en cuenta N°{{cuentacorri}}</p>
+                  {% endif %}
                 {% endif %}
                 {% for error in form.non_field_errors %}
                   <p class="alert alert-danger cent">{{error}}</p>
